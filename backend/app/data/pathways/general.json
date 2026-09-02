@@ -1,0 +1,21 @@
+{
+    "pathway_id": "general",
+    "name": "General Consultation",
+    "description": "General medical intake.",
+    "questions": [
+        {
+            "question_key": "gen_symptoms",
+            "section": "HPI",
+            "clinical_field": "symptoms",
+            "question_text": {
+                "en": "Could you provide more details about your symptoms?",
+                "hi": "क्या आप अपने लक्षणों के बारे में अधिक जानकारी दे सकते हैं?",
+                "kn": "ನಿಮ್ಮ ರೋಗಲಕ್ಷಣಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು ನೀಡಬಹುದೇ?"
+            },
+            "input_type": "text",
+            "is_required": true,
+            "display_order": 10
+        }
+    ],
+    "rules": []
+}

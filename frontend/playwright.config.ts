@@ -1,0 +1,37 @@
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: 1,
+  reporter: 'list',
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+  },
+  webServer: {
+    command: 'npm run start',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
+  },
+  projects: [
+    {
+      name: 'desktop-kiosk',
+      use: { 
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1280, height: 800 },
+      },
+    },
+    {
+      name: 'tablet-touchscreen',
+      use: { 
+        ...devices['Desktop Chrome'],
+        viewport: { width: 820, height: 1180 },
+        hasTouch: true,
+      },
+    },
+  ],
+});

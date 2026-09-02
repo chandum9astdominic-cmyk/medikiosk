@@ -1,0 +1,83 @@
+{
+    "pathway_id": "abdominal_pain",
+    "name": "Abdominal Pain",
+    "description": "Pathway for assessing chief complaint of abdominal pain.",
+    "questions": [
+        {
+            "question_key": "ap_location",
+            "section": "HPI",
+            "clinical_field": "location",
+            "question_text": {
+                "en": "Where exactly is the abdominal pain located?",
+                "hi": "पेट में दर्द ठीक कहाँ है?",
+                "kn": "ಹೊಟ್ಟೆ ನೋವು ನಿಖರವಾಗಿ ಎಲ್ಲಿದೆ?"
+            },
+            "input_type": "text",
+            "is_required": true,
+            "display_order": 10
+        },
+        {
+            "question_key": "ap_onset",
+            "section": "HPI",
+            "clinical_field": "onset",
+            "question_text": {
+                "en": "When did the pain start? Was it sudden or gradual?",
+                "hi": "दर्द कब शुरू हुआ? क्या यह अचानक था या धीरे-धीरे?",
+                "kn": "ನೋವು ಯಾವಾಗ ಪ್ರಾರಂಭವಾಯಿತು? ಅದು ಹಠಾತ್ತಾಗಿದೆಯೇ ಅಥವಾ ಕ್ರಮೇಣವಾಗಿದೆಯೇ?"
+            },
+            "input_type": "text",
+            "is_required": true,
+            "display_order": 20
+        },
+        {
+            "question_key": "ap_severity",
+            "section": "HPI",
+            "clinical_field": "severity",
+            "question_text": {
+                "en": "On a scale of 1 to 10, how severe is the pain?",
+                "hi": "1 से 10 के पैमाने पर दर्द कितना गंभीर है?",
+                "kn": "1 ರಿಂದ 10 ರ ಮಾಪಕದಲ್ಲಿ, ನೋವು ಎಷ್ಟು ತೀವ್ರವಾಗಿದೆ?"
+            },
+            "input_type": "text",
+            "is_required": true,
+            "display_order": 30
+        },
+        {
+            "question_key": "ap_associated_symptoms",
+            "section": "HPI",
+            "clinical_field": "associated_symptoms",
+            "question_text": {
+                "en": "Do you have any other symptoms like fever, nausea, vomiting, or diarrhea?",
+                "hi": "क्या आपको बुखार, मतली, उल्टी, या दस्त जैसे कोई अन्य लक्षण हैं?",
+                "kn": "ನಿಮಗೆ ಜ್ವರ, ವಾಕರಿಕೆ, ವಾಂತಿ ಅಥವಾ ಭೇದಿಯಂತಹ ಯಾವುದೇ ಇತರ ಲಕ್ಷಣಗಳಿವೆಯೇ?"
+            },
+            "input_type": "text",
+            "is_required": false,
+            "display_order": 40
+        }
+    ],
+    "rules": [
+        {
+            "rule_id": "rule_ap_1",
+            "trigger_question": "ap_associated_symptoms",
+            "condition": "contains",
+            "value": "fever",
+            "action": "flag_red",
+            "metadata": {
+                "severity": "high",
+                "message": "Potential urgent symptom identified (abdominal pain + fever). Please alert the clinical team."
+            }
+        },
+        {
+            "rule_id": "rule_ap_2",
+            "trigger_question": "ap_location",
+            "condition": "contains",
+            "value": "right lower quadrant",
+            "action": "flag_red",
+            "metadata": {
+                "severity": "high",
+                "message": "Potential urgent symptom identified (RLQ pain). Please alert the clinical team."
+            }
+        }
+    ]
+}

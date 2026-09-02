@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-scale: 1;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased select-none;
+    font-size: calc(1.125rem * var(--font-scale));
+    line-height: 1.6;
+    touch-action: manipulation;
+  }
+
+  /* High contrast mode */
+  body.high-contrast {
+    @apply bg-black text-white;
+  }
+  body.high-contrast .kiosk-card {
+    @apply bg-black border-2 border-yellow-400 text-white;
+  }
+  body.high-contrast button {
+    @apply border-2 border-yellow-400 font-bold;
+  }
+}
+
+/* Kiosk Specific Utility Classes */
+.touch-btn {
+  @apply min-h-[60px] min-w-[60px] flex items-center justify-center px-6 py-4 rounded-xl font-medium text-lg transition-all duration-150 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.touch-btn-primary {
+  @apply touch-btn bg-teal-700 hover:bg-teal-800 text-white shadow-md active:bg-teal-900;
+}
+
+.touch-btn-secondary {
+  @apply touch-btn bg-sky-700 hover:bg-sky-800 text-white shadow-sm active:bg-sky-900;
+}
+
+.touch-btn-outline {
+  @apply touch-btn bg-white hover:bg-slate-100 text-slate-800 border-2 border-slate-300 active:bg-slate-200;
+}
+
+.touch-btn-subtle {
+  @apply touch-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300;
+}
+
+.touch-input {
+  @apply w-full min-h-[64px] px-5 py-3 rounded-xl border-2 border-slate-300 bg-white text-slate-900 text-xl focus:border-teal-600 focus:outline-none focus:ring-4 focus:ring-teal-100;
+}
