@@ -1,13 +1,7 @@
-import enum
 import uuid
 from typing import List, Optional, Dict, Any
 from datetime import datetime, date
 from pydantic import BaseModel, Field
-
-from app.models.document import DocumentType, EntityCategory, ExtractionConfidence
-from app.models.clinical import VerificationStatus, InfoSource
-
-# --- OCR Result Models ---
 
 class OCRBoundingBox(BaseModel):
     x: int = 0
@@ -35,8 +29,6 @@ class OCRResult(BaseModel):
     pages: List[OCRPage] = []
     processing_status: str = "completed"
     provider_name: str = "mock"
-
-# --- Document API Schemas ---
 
 class DocumentUploadResponse(BaseModel):
     document_id: uuid.UUID
@@ -95,3 +87,8 @@ class DocumentProcessingResponse(BaseModel):
     extracted_entities_count: int
     ocr_preview: Optional[str] = None
     entities: List[ExtractedEntityResponse] = []
+
+class DocumentTimelineResponse(BaseModel):
+    patient_id: uuid.UUID
+    documents_count: int
+    timeline: List[Dict[str, Any]]
